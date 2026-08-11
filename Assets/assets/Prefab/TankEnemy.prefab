@@ -110,7 +110,7 @@ MonoBehaviour:
   hp: 30
   maxHp: 30
   logDamage: 1
-  hitVfxPrefab: {fileID: 500345726442012828, guid: 50a810bfd70577b41a2d43ae0241ea2d, type: 3}
+  hitVfxPrefab: {fileID: 5669246471909640947, guid: bfd016bff164dfc4aac33a0563922772, type: 3}
   hitVfxOffset: {x: 0, y: 0, z: 0}
   goldPickupPrefab: {fileID: 0}
   minGoldDrop: 1

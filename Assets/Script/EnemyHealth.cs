@@ -14,6 +14,8 @@ public class EnemyHealth : MonoBehaviour
     [Header("Hit Feedback")]
     public GameObject hitVfxPrefab;
     public Vector3 hitVfxOffset = Vector3.zero;
+    [Min(0f)] public float hitInvincibilityDuration = 0.15f;
+    [Min(1)] public int hitFlashCount = 2;
 
     [Header("Death Rewards")]
     [Tooltip("CoinPickup 컴포넌트가 붙은 골드 프리팹입니다.")]
@@ -37,6 +39,11 @@ public class EnemyHealth : MonoBehaviour
     private bool isDead;
     private bool rewardsDropped;
     private Coroutine deathCoroutine;
+    private Coroutine hitFeedbackCoroutine;
+    private SpriteRenderer[] spriteRenderers;
+    private Material hitFlashMaterial;
+    private MaterialPropertyBlock flashPropertyBlock;
+    private static readonly int FlashAmountId = Shader.PropertyToID("_FlashAmount");
 
     private void Awake()
     {
@@ -55,7 +62,27 @@ public class EnemyHealth : MonoBehaviour
         if (animator == null)
             animator = GetComponentInChildren<Animator>(true);
 
+        spriteRenderers = GetComponentsInChildren<SpriteRenderer>(true);
+        flashPropertyBlock = new MaterialPropertyBlock();
+
+        Shader flashShader = Shader.Find("EmberKeep/EnemyHitFlash");
+        if (flashShader != null)
+        {
+            hitFlashMaterial = new Material(flashShader);
+            foreach (SpriteRenderer spriteRenderer in spriteRenderers)
+            {
+                if (spriteRenderer != null)
+                    spriteRenderer.sharedMaterial = hitFlashMaterial;
+            }
+        }
+
         hp = Mathf.Clamp(hp, 0, maxHp);
+    }
+
+    private void OnDestroy()
+    {
+        if (hitFlashMaterial != null)
+            Destroy(hitFlashMaterial);
     }
 
     private void CopyMissingRewardSettingsFromDuplicate()
@@ -95,6 +122,14 @@ public class EnemyHealth : MonoBehaviour
         isDead = false;
         rewardsDropped = false;
 
+        if (hitFeedbackCoroutine != null)
+        {
+            StopCoroutine(hitFeedbackCoroutine);
+            hitFeedbackCoroutine = null;
+        }
+
+        SetFlashAmount(0f);
+
         if (deathCoroutine != null)
         {
             StopCoroutine(deathCoroutine);
@@ -104,12 +139,10 @@ public class EnemyHealth : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
-        if (isDead)
+        if (isDead || hitFeedbackCoroutine != null)
             return;
 
         hp = Mathf.Max(0, hp - Mathf.Max(0, damage));
-
-        PlayHitFeedback();
 
         if (logDamage)
             Debug.Log($"{gameObject.name} 피해량: {damage}, 남은 HP: {hp}/{maxHp}");
@@ -117,6 +150,46 @@ public class EnemyHealth : MonoBehaviour
         if (hp <= 0)
         {
             Die();
+            return;
+        }
+
+        PlayHitFeedback();
+        hitFeedbackCoroutine = StartCoroutine(HitFlashAndInvincibilityRoutine());
+    }
+
+    private System.Collections.IEnumerator HitFlashAndInvincibilityRoutine()
+    {
+        int flashCount = Mathf.Max(1, hitFlashCount);
+        float phaseDuration = hitInvincibilityDuration / (flashCount * 2f);
+
+        for (int i = 0; i < flashCount; i++)
+        {
+            SetFlashAmount(1f);
+            if (phaseDuration > 0f)
+                yield return new WaitForSeconds(phaseDuration);
+
+            SetFlashAmount(0f);
+            if (phaseDuration > 0f)
+                yield return new WaitForSeconds(phaseDuration);
+        }
+
+        SetFlashAmount(0f);
+        hitFeedbackCoroutine = null;
+    }
+
+    private void SetFlashAmount(float amount)
+    {
+        if (spriteRenderers == null || flashPropertyBlock == null)
+            return;
+
+        foreach (SpriteRenderer spriteRenderer in spriteRenderers)
+        {
+            if (spriteRenderer == null)
+                continue;
+
+            spriteRenderer.GetPropertyBlock(flashPropertyBlock);
+            flashPropertyBlock.SetFloat(FlashAmountId, amount);
+            spriteRenderer.SetPropertyBlock(flashPropertyBlock);
         }
     }
 
@@ -140,6 +213,14 @@ public class EnemyHealth : MonoBehaviour
             return;
 
         isDead = true;
+
+        if (hitFeedbackCoroutine != null)
+        {
+            StopCoroutine(hitFeedbackCoroutine);
+            hitFeedbackCoroutine = null;
+        }
+
+        SetFlashAmount(0f);
         Died?.Invoke(this);
 
         StopEnemyBehaviour();

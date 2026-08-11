@@ -66,5 +66,5 @@
     "explorer.fileNesting.patterns": {
         "*.sln": "*.csproj"
     },
-    "dotnet.defaultSolution": "EmberKeep - 복사본 (2).sln"
+    "dotnet.defaultSolution": "Crystal.sln"
 }
