@@ -1,0 +1,104 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &7471482610964431800
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 22296639515020674}
+  - component: {fileID: 784592965047794434}
+  - component: {fileID: 8606966191545373463}
+  m_Layer: 0
+  m_Name: MenuManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &22296639515020674
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7471482610964431800}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 343.34534, y: 265.22385, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &784592965047794434
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7471482610964431800}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ba2eb0cc4a60a34caf11acbba7dad78, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameSceneName: EmberKeep
+  optionPanel: {fileID: 0}
+  settingsMenu: {fileID: 8606966191545373463}
+  autoConnectButtons: 1
+  playButton: {fileID: 0}
+  optionButton: {fileID: 0}
+  exitButton: {fileID: 0}
+--- !u!114 &8606966191545373463
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7471482610964431800}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 30f53eeb9a8c0a6459f3c3e3020dca88, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  settingsPanel: {fileID: 0}
+  pauseGameWhileOpen: 1
+  keepSettingsMenuAcrossScenes: 1
+  buttonStep: 0.1
+  soundVolume: 0.8
+  controlledAudioSources: []
+  soundValueText: {fileID: 0}
+  soundMinusButton: {fileID: 0}
+  soundPlusButton: {fileID: 0}
+  brightness: 0.6
+  brightnessValueText: {fileID: 0}
+  brightnessOverlay: {fileID: 0}
+  brightnessMinusButton: {fileID: 0}
+  brightnessPlusButton: {fileID: 0}
+  upKeyButton: {fileID: 0}
+  downKeyButton: {fileID: 0}
+  leftKeyButton: {fileID: 0}
+  rightKeyButton: {fileID: 0}
+  skillKeyButton: {fileID: 0}
+  dodgeKeyButton: {fileID: 0}
+  interactKeyButton: {fileID: 0}
+  upKeyText: {fileID: 0}
+  downKeyText: {fileID: 0}
+  leftKeyText: {fileID: 0}
+  rightKeyText: {fileID: 0}
+  skillKeyText: {fileID: 0}
+  dodgeKeyText: {fileID: 0}
+  interactKeyText: {fileID: 0}
+  waitingForKeyText: "\uC785\uB825..."
+  useCapturedBlurInGameScene: 1
+  blurDownsample: 4
+  blurIterations: 3
+  blurBackgroundImage: {fileID: 0}
+  dimBackgroundImage: {fileID: 0}
+  lobbySceneName: Main Menu
+  closeButton: {fileID: 0}
+  lobbyButton: {fileID: 0}
+  quitButton: {fileID: 0}

@@ -1,0 +1,103 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3875550054490733884
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6926067898563302132}
+  - component: {fileID: 2369827554027637543}
+  m_Layer: 0
+  m_Name: WaveManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6926067898563302132
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3875550054490733884}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -3.27702, y: -1.115, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2369827554027637543
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3875550054490733884}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a36484ae5297674b9a36362f3c74c88, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentWave: 1
+  startOnAwake: 1
+  phaseTransitionDelay: 3
+  attackPhaseDuration: 60
+  maintenancePhaseDuration: 20
+  defensePhaseDuration: 35
+  player: {fileID: 0}
+  attackStartPoint: {fileID: 0}
+  homeSpawnPoint: {fileID: 0}
+  defenseRespawnDelay: 3
+  homeBase: {fileID: 0}
+  homeTargetPoint: {fileID: 0}
+  enemies:
+  - prefab: {fileID: 8465812276521420008, guid: 3bbe3a271bd42a944a1061ed0b8dd53d, type: 3}
+    unlockWave: 1
+    weight: 1
+    spawnInAttackPhase: 1
+    spawnInDefensePhase: 1
+  attackSpawnPoints:
+  - {fileID: 0}
+  - {fileID: 0}
+  attackSpawnZones: []
+  autoFindAttackSpawnZones: 1
+  attackSpawnInterval: 2
+  attackMaxAliveEnemies: 12
+  defenseSpawnPoints:
+  - {fileID: 0}
+  - {fileID: 0}
+  defenseSpawnInterval: 2.5
+  defenseMaxAliveEnemies: 10
+  defenseEnemyMovementMode: 0
+  defenseWaypoints: []
+  defensePaths: []
+  extraMaxAlivePerWave: 2
+  spawnIntervalDecreasePerWave: 0.05
+  minSpawnInterval: 0.6
+  useWaveScaling: 1
+  enemyStatIncreasePerWave: 0.12
+  useDistanceScalingInAttackPhase: 1
+  distanceOrigin: {fileID: 0}
+  distanceForMaxBonus: 30
+  maxDistanceStatBonus: 1.5
+  requirePlayerNearAttackSpawn: 1
+  requirePlayerNearDefenseSpawn: 0
+  spawnAwarenessRange: 6
+  useSceneTransitionForPhases: 1
+  attackSceneNames:
+  - EmberKeep
+  - Attack1
+  maintenanceSceneNames:
+  - MainMap1
+  - MainMap2
+  defenseSceneNames:
+  - DefenseMap1
+  - DefenseMap2
+  enableHoldSkipToNextPhase: 1
+  skipHoldDuration: 1

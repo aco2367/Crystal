@@ -1,0 +1,403 @@
+fileFormatVersion: 2
+guid: f7a8abb1570f84e46a393dbfd9850ecb
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 6271753267566694310
+    second: KakaoTalk_20260723_115840443-Photoroom_0
+  - first:
+      213: 5208264347550825001
+    second: KakaoTalk_20260723_115840443-Photoroom_1
+  - first:
+      213: 8518952400916758276
+    second: KakaoTalk_20260723_115840443-Photoroom_2
+  - first:
+      213: 4405938316201441223
+    second: KakaoTalk_20260723_115840443-Photoroom_3
+  - first:
+      213: 194364411888969991
+    second: KakaoTalk_20260723_115840443-Photoroom_4
+  - first:
+      213: 5906710650966866382
+    second: KakaoTalk_20260723_115840443-Photoroom_5
+  - first:
+      213: 1388592566920709521
+    second: KakaoTalk_20260723_115840443-Photoroom_6
+  - first:
+      213: 7621103494492468097
+    second: KakaoTalk_20260723_115840443-Photoroom_7
+  - first:
+      213: -2095959864910519633
+    second: KakaoTalk_20260723_115840443-Photoroom_8
+  - first:
+      213: -6327743230138398855
+    second: KakaoTalk_20260723_115840443-Photoroom_9
+  - first:
+      213: 7757527575597655431
+    second: KakaoTalk_20260723_115840443-Photoroom_10
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 150
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 16384
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: KakaoTalk_20260723_115840443-Photoroom_0
+      rect:
+        serializedVersion: 2
+        x: 154
+        y: 173
+        width: 81
+        height: 116
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6af45302e5eb90750800000000000000
+      internalID: 6271753267566694310
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: KakaoTalk_20260723_115840443-Photoroom_1
+      rect:
+        serializedVersion: 2
+        x: 331
+        y: 152
+        width: 81
+        height: 115
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 92a391c54d8774840800000000000000
+      internalID: 5208264347550825001
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: KakaoTalk_20260723_115840443-Photoroom_2
+      rect:
+        serializedVersion: 2
+        x: 522
+        y: 33
+        width: 127
+        height: 193
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 40fba13c216693670800000000000000
+      internalID: 8518952400916758276
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: KakaoTalk_20260723_115840443-Photoroom_3
+      rect:
+        serializedVersion: 2
+        x: 692
+        y: 37
+        width: 138
+        height: 149
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7c7387f0e89052d30800000000000000
+      internalID: 4405938316201441223
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: KakaoTalk_20260723_115840443-Photoroom_4
+      rect:
+        serializedVersion: 2
+        x: 34
+        y: 36
+        width: 80
+        height: 111
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 709ae9f176582b200800000000000000
+      internalID: 194364411888969991
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: KakaoTalk_20260723_115840443-Photoroom_5
+      rect:
+        serializedVersion: 2
+        x: 202
+        y: 37
+        width: 82
+        height: 109
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ec975edba0ad8f150800000000000000
+      internalID: 5906710650966866382
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: KakaoTalk_20260723_115840443-Photoroom_6
+      rect:
+        serializedVersion: 2
+        x: 382
+        y: 37
+        width: 86
+        height: 109
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1958e012595454310800000000000000
+      internalID: 1388592566920709521
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: KakaoTalk_20260723_115840443-Photoroom_7
+      rect:
+        serializedVersion: 2
+        x: 877
+        y: 32
+        width: 151
+        height: 133
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 18336b9ff3993c960800000000000000
+      internalID: 7621103494492468097
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: KakaoTalk_20260723_115840443-Photoroom_8
+      rect:
+        serializedVersion: 2
+        x: 1089
+        y: 35
+        width: 151
+        height: 116
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fa268849b97a9e2e0800000000000000
+      internalID: -2095959864910519633
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: KakaoTalk_20260723_115840443-Photoroom_9
+      rect:
+        serializedVersion: 2
+        x: 1280
+        y: 36
+        width: 152
+        height: 115
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 977c7b9de075f28a0800000000000000
+      internalID: -6327743230138398855
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: KakaoTalk_20260723_115840443-Photoroom_10
+      rect:
+        serializedVersion: 2
+        x: 1465
+        y: 36
+        width: 151
+        height: 115
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 785abc69a3648ab60800000000000000
+      internalID: 7757527575597655431
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      KakaoTalk_20260723_115840443-Photoroom_0: 6271753267566694310
+      KakaoTalk_20260723_115840443-Photoroom_1: 5208264347550825001
+      KakaoTalk_20260723_115840443-Photoroom_10: 7757527575597655431
+      KakaoTalk_20260723_115840443-Photoroom_2: 8518952400916758276
+      KakaoTalk_20260723_115840443-Photoroom_3: 4405938316201441223
+      KakaoTalk_20260723_115840443-Photoroom_4: 194364411888969991
+      KakaoTalk_20260723_115840443-Photoroom_5: 5906710650966866382
+      KakaoTalk_20260723_115840443-Photoroom_6: 1388592566920709521
+      KakaoTalk_20260723_115840443-Photoroom_7: 7621103494492468097
+      KakaoTalk_20260723_115840443-Photoroom_8: -2095959864910519633
+      KakaoTalk_20260723_115840443-Photoroom_9: -6327743230138398855
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
