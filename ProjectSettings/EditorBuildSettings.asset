@@ -12,7 +12,7 @@ EditorBuildSettings:
     path: Assets/Scenes/Main Menu.unity
     guid: 12d3c4e9cf5b5674c83a9bb64d6cf344
   - enabled: 1
-    path: Assets/Scenes/EmberKeep.unity
+    path: Assets/Scenes/Attack1.unity
     guid: 4e62a9472892e4846a4f52fcfc4bbccb
   - enabled: 1
     path: Assets/Scenes/MainMap1.unity
@@ -27,7 +27,7 @@ EditorBuildSettings:
     path: Assets/Scenes/MainMap2.unity
     guid: a2f76334ff8c342459eaf098c2125462
   - enabled: 1
-    path: Assets/Scenes/Attack1.unity
+    path: Assets/Scenes/Attack2.unity
     guid: d09f1aff0d4e8d44596f9f135ebebf46
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
