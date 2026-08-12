@@ -107,11 +107,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 795813aa46b40f941b9255cbfde2b94a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hp: 30
-  maxHp: 30
+  hp: 80
+  maxHp: 80
   logDamage: 1
   hitVfxPrefab: {fileID: 500345726442012828, guid: 50a810bfd70577b41a2d43ae0241ea2d, type: 3}
   hitVfxOffset: {x: 0, y: 0, z: 0}
+  hitInvincibilityDuration: 0.15
+  hitFlashCount: 2
   goldPickupPrefab: {fileID: 0}
   minGoldDrop: 1
   maxGoldDrop: 3
@@ -163,12 +165,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyKind: 1
   applyPresetOnStart: 1
-  maxHp: 30
+  preserveInspectorCombatStats: 1
+  maxHp: 80
   attackDamage: 10
   moveSpeed: 2
-  attackRange: 0.7
-  attackCooldown: 1
-  stopDistance: 0.45
+  attackRange: 5
+  attackCooldown: 1.4
+  stopDistance: 0.8
   lockMovementWhileAttacking: 1
   attackHitDelay: 0.35
   attackMovementLockDuration: 0.7
@@ -183,20 +186,20 @@ MonoBehaviour:
   playerDetectionRange: 6
   drawDetectionRangeAlways: 1
   detectionRangeColor: {r: 1, g: 0.75, b: 0, a: 0.35}
-  useAStarMovement: 1
+  useAStarMovement: 0
   aStarPathfinder: {fileID: 0}
-  fallbackToDirectMovementWhenPathFails: 1
-  aStarRepathInterval: 0.8
-  aStarTargetMoveThreshold: 0.5
+  fallbackToDirectMovementWhenPathFails: 0
+  aStarRepathInterval: 1.5
+  aStarTargetMoveThreshold: 1
   pathWaypointReachDistance: 0.15
   movementMode: 0
   waypointReachDistance: 0.2
   ignoreSameLayerCollision: 1
   warnIfIgnoringDefaultLayer: 1
   useEnemySeparation: 1
-  separationRadius: 0.45
-  separationStrength: 1.5
-  maxSeparationSpeed: 1.25
+  separationRadius: 0.4
+  separationStrength: 1
+  maxSeparationSpeed: 0.75
   separationLayerMask:
     serializedVersion: 2
     m_Bits: 64
@@ -220,11 +223,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 795813aa46b40f941b9255cbfde2b94a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hp: 30
-  maxHp: 30
+  hp: 80
+  maxHp: 80
   logDamage: 1
   hitVfxPrefab: {fileID: 0}
   hitVfxOffset: {x: 0, y: 0, z: 0}
+  hitInvincibilityDuration: 0.15
+  hitFlashCount: 2
   goldPickupPrefab: {fileID: 396247622101000904, guid: 6bc6a7275abde4a429b5f41e4220a1b7, type: 3}
   minGoldDrop: 1
   maxGoldDrop: 3

@@ -123,7 +123,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21c2fda178ebe25468a2e1193291bd0f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  value: 1
+  value: 2
   visual: {fileID: 0}
   coinScale: 2
   delayBeforeMove: 0.25

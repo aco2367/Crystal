@@ -71,7 +71,8 @@ public class AttackSpawnZone : MonoBehaviour
     public List<Transform> waypoints = new List<Transform>();
 
     [Header("Random Box Spawn")]
-    public BoxCollider2D randomSpawnArea;
+    [Tooltip("BoxCollider2D와 PolygonCollider2D를 모두 사용할 수 있습니다.")]
+    public Collider2D randomSpawnArea;
     public float randomSpawnStatMultiplier = 1f;
     public LayerMask blockedSpawnLayers;
     public float spawnCollisionCheckRadius = 0.25f;
@@ -82,16 +83,17 @@ public class AttackSpawnZone : MonoBehaviour
 
     private readonly List<EnemyHealth> spawnedEnemies = new List<EnemyHealth>();
     private float cooldownRemaining;
+    private bool spawnedThisAttackPhase;
 
     private void Reset()
     {
-        randomSpawnArea = GetComponent<BoxCollider2D>();
+        randomSpawnArea = GetComponent<Collider2D>();
     }
 
     private void Awake()
     {
         if (randomSpawnArea == null)
-            randomSpawnArea = GetComponent<BoxCollider2D>();
+            randomSpawnArea = GetComponent<Collider2D>();
     }
 
     public bool CanUse(int currentWave)
@@ -102,13 +104,15 @@ public class AttackSpawnZone : MonoBehaviour
     public bool CanSpawnBatch(int currentWave)
     {
         RemoveNullSpawnedEnemies();
-        return CanUse(currentWave) && spawnedEnemies.Count == 0 && cooldownRemaining <= 0f;
+        return !spawnedThisAttackPhase && CanUse(currentWave) &&
+            spawnedEnemies.Count == 0 && cooldownRemaining <= 0f;
     }
 
     public void BeginAttackPhase()
     {
         ClearSpawnTracking();
         cooldownRemaining = 0f;
+        spawnedThisAttackPhase = false;
     }
 
     public void TickCooldown(float deltaTime)
@@ -131,6 +135,7 @@ public class AttackSpawnZone : MonoBehaviour
 
         RemoveNullSpawnedEnemies();
         spawnedEnemies.Add(enemyHealth);
+        spawnedThisAttackPhase = true;
         enemyHealth.Died += OnTrackedEnemyDied;
     }
 

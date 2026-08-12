@@ -13,7 +13,6 @@ public class PlayerStats : MonoBehaviour
 
     [Header("Combat")]
     public int attackPower = 10;
-    public int defensePower = 2;
     public float attackSpeed = 1f;
     public float criticalChance = 0.1f;
     public float criticalDamage = 1.5f;
@@ -116,7 +115,8 @@ public class PlayerStats : MonoBehaviour
         if (augmentController != null)
             rawDamage = augmentController.ModifyIncomingEnemyDamage(rawDamage, meleeAttacker != null ? meleeAttacker.transform : null);
 
-        int incomingDamage = Mathf.Max(0, rawDamage - defensePower);
+        // EnemyController의 Attack Damage를 기본 최종 피해량으로 사용한다.
+        int incomingDamage = Mathf.Max(0, rawDamage);
         incomingDamage = Mathf.RoundToInt(incomingDamage * (1f - Mathf.Clamp01(damageReduction)));
         incomingDamage = Mathf.Max(1, incomingDamage);
 
@@ -327,10 +327,8 @@ public class PlayerStats : MonoBehaviour
         expToNextLevel += 50;
 
         maxHp += 20;
-        hp = maxHp;
 
         attackPower += 3;
-        defensePower += 1;
 
         Debug.Log($"레벨업! 현재 레벨: {level}");
     }

@@ -257,7 +257,7 @@ public class EnemyHealth : MonoBehaviour
                     pickup = goldObject.GetComponentInChildren<CoinPickup>();
 
                 if (pickup != null)
-                    pickup.value = 1;
+                    pickup.value = 3;
                 else
                     Debug.LogWarning($"{goldPickupPrefab.name}에 CoinPickup 컴포넌트가 없습니다.", goldObject);
             }

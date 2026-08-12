@@ -7,12 +7,12 @@ public class AStarPathfinder2D : MonoBehaviour
 
     [Header("Grid")]
     public Vector2 gridWorldSize = new Vector2(60f, 40f);
-    public float cellSize = 0.5f;
+    public float cellSize = 1f;
     public bool allowDiagonalMovement = true;
 
     [Header("Collision")]
     public LayerMask blockedLayers;
-    public float collisionCheckRadius = 0.2f;
+    public float collisionCheckRadius = 0.45f;
 
     [Header("Scene View")]
     public bool drawGridBounds = true;

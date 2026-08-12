@@ -104,6 +104,8 @@ public class WaveManager : MonoBehaviour
     public float PhaseTimeRemaining => phaseTimeRemaining;
     public int AliveEnemyCount => aliveEnemies.Count;
     public bool IsDefensePhase => currentPhase == WavePhase.Defense;
+    public bool CanEndCurrentPhaseEarly =>
+        phaseRoutine != null && phaseTimeRemaining > 0f && currentPhase != WavePhase.Defense;
 
     public event Action<int> WaveStarted;
     public event Action<int> WaveCleared;
@@ -185,6 +187,17 @@ public class WaveManager : MonoBehaviour
         session.currentWave = currentWave;
         session.LoadCurrentMaintenanceScene(nextPhaseAfterMaintenance);
     }
+
+    public bool TryEndCurrentPhaseEarly()
+    {
+        if (!CanEndCurrentPhaseEarly)
+            return false;
+
+        phaseTimeRemaining = 0f;
+        Debug.Log($"{currentPhase} 페이즈를 조기 종료했습니다.");
+        return true;
+    }
+
     public void StartPhaseLoop()
     {
         if (phaseRoutine != null)
@@ -601,7 +614,7 @@ public class WaveManager : MonoBehaviour
             float statMultiplier = CalculateEnemyStatMultiplier(WavePhase.Attack, zoneSpawn.position);
             statMultiplier *= Mathf.Max(0.1f, zone.zoneStatMultiplier);
             statMultiplier *= Mathf.Max(0.1f, zoneSpawn.statMultiplier);
-            enemyController.ApplyRuntimeScaling(statMultiplier);
+            enemyController.ApplyHealthAndAttackScaling(statMultiplier);
             enemyController.ConfigureMovement(zone.enemyMovementMode, zone.waypoints);
         }
 

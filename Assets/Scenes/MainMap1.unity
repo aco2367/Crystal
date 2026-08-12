@@ -7120,7 +7120,7 @@ MonoBehaviour:
         description: 
         tier: 0
         price: 50
-        canBuyMultiple: 0
+        canBuyMultiple: 1
         iconSprite: {fileID: -5488439893540817041, guid: 11e8a1be59b656f43ba2a2b282948452, type: 3}
         iconColor: {r: 0, g: 0, b: 0, a: 0}
         recipeMaterials: []
@@ -7137,7 +7137,7 @@ MonoBehaviour:
         description: 
         tier: 0
         price: 50
-        canBuyMultiple: 0
+        canBuyMultiple: 1
         iconSprite: {fileID: -5488439893540817041, guid: 11e8a1be59b656f43ba2a2b282948452, type: 3}
         iconColor: {r: 0, g: 0, b: 0, a: 0}
         recipeMaterials: []

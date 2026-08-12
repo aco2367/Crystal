@@ -164,7 +164,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyKind: 3
-  applyPresetOnStart: 1
+  applyPresetOnStart: 0
   maxHp: 30
   attackDamage: 10
   moveSpeed: 2
@@ -180,18 +180,18 @@ MonoBehaviour:
   playerDetectionRange: 6
   drawDetectionRangeAlways: 1
   detectionRangeColor: {r: 1, g: 0.75, b: 0, a: 0.35}
-  useAStarMovement: 1
+  useAStarMovement: 0
   aStarPathfinder: {fileID: 0}
-  fallbackToDirectMovementWhenPathFails: 1
-  aStarRepathInterval: 0.4
-  aStarTargetMoveThreshold: 0.5
+  fallbackToDirectMovementWhenPathFails: 0
+  aStarRepathInterval: 1.5
+  aStarTargetMoveThreshold: 1
   pathWaypointReachDistance: 0.15
   ignoreSameLayerCollision: 1
   warnIfIgnoringDefaultLayer: 1
   useEnemySeparation: 1
-  separationRadius: 0.45
-  separationStrength: 1.5
-  maxSeparationSpeed: 1.25
+  separationRadius: 0.4
+  separationStrength: 1
+  maxSeparationSpeed: 0.75
   separationLayerMask:
     serializedVersion: 2
     m_Bits: 64

@@ -131,7 +131,7 @@ public class PlayerController : MonoBehaviour
     public string swordWeaponAttackState = "SwordAttack";
     public string archerWeaponAttackState = "ArcherAttact";
     public string tankWeaponAttackState = "TankAttack";
-    public int weaponSortingOrder = 3;
+    public int weaponSortingOrder = 4;
 
     [Header("Sword Attack")]
     public float swordRange = 1.2f;

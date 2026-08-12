@@ -19,7 +19,6 @@ public class GameSession : MonoBehaviour
     public int hp = 100;
     public int maxHp = 100;
     public int attackPower = 10;
-    public int defensePower = 2;
     public float attackSpeed = 1f;
     public float criticalChance = 0.1f;
     public float criticalDamage = 1.5f;
@@ -95,7 +94,6 @@ public class GameSession : MonoBehaviour
         hp = Mathf.Max(1, stats.hp);
         maxHp = stats.maxHp;
         attackPower = stats.attackPower;
-        defensePower = stats.defensePower;
         attackSpeed = stats.attackSpeed;
         criticalChance = stats.criticalChance;
         criticalDamage = stats.criticalDamage;
@@ -176,7 +174,6 @@ public class GameSession : MonoBehaviour
         stats.hp = healPlayerToFullOnSceneLoad ? maxHp : Mathf.Clamp(hp, 1, maxHp);
         hp = stats.hp;
         stats.attackPower = attackPower;
-        stats.defensePower = defensePower;
         stats.attackSpeed = attackSpeed;
         stats.criticalChance = criticalChance;
         stats.criticalDamage = criticalDamage;
@@ -247,7 +244,6 @@ public class GameSession : MonoBehaviour
         hp = 100;
         maxHp = 100;
         attackPower = 10;
-        defensePower = 2;
         attackSpeed = 1f;
         criticalChance = 0.1f;
         criticalDamage = 1.5f;

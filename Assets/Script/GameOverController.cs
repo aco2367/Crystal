@@ -4,7 +4,7 @@ using UnityEngine.SceneManagement;
 public class GameOverController : MonoBehaviour
 {
     [Header("Scene")]
-    public string mainMenuSceneName = "MainMenu";
+    public string mainMenuSceneName = "Main Menu";
 
     private void Awake()
     {

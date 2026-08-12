@@ -130,6 +130,12 @@ public class ShopPanelController : MonoBehaviour
         }
     }
 
+    private class AggregatedRecipeMaterial
+    {
+        public ShopItemData item;
+        public int requiredCount;
+    }
+
     private void Awake()
     {
         if (Instance != null && Instance != this)
@@ -1600,14 +1606,10 @@ public class ShopPanelController : MonoBehaviour
             return 0;
 
         int discount = 0;
-        foreach (ShopItemData.RecipeMaterial material in item.recipeMaterials)
+        foreach (AggregatedRecipeMaterial material in GetAggregatedRecipeMaterials(item))
         {
-            if (material == null || material.item == null)
-                continue;
-
-            int requiredCount = Mathf.Max(1, material.count);
             int ownedCount = GetInventoryItemCount(material.item);
-            int usableCount = Mathf.Min(requiredCount, ownedCount);
+            int usableCount = Mathf.Min(material.requiredCount, ownedCount);
             discount += material.item.price * usableCount;
         }
 
@@ -1737,14 +1739,10 @@ public class ShopPanelController : MonoBehaviour
             return 0;
 
         int consumedCount = 0;
-        foreach (ShopItemData.RecipeMaterial material in item.recipeMaterials)
+        foreach (AggregatedRecipeMaterial material in GetAggregatedRecipeMaterials(item))
         {
-            if (material == null || material.item == null)
-                continue;
-
-            int requiredCount = Mathf.Max(1, material.count);
             int ownedCount = GetInventoryItemCount(material.item);
-            consumedCount += Mathf.Min(requiredCount, ownedCount);
+            consumedCount += Mathf.Min(material.requiredCount, ownedCount);
         }
 
         return consumedCount;
@@ -1756,18 +1754,50 @@ public class ShopPanelController : MonoBehaviour
             return -1;
 
         int firstConsumedIndex = -1;
-        foreach (ShopItemData.RecipeMaterial material in item.recipeMaterials)
+        foreach (AggregatedRecipeMaterial material in GetAggregatedRecipeMaterials(item))
         {
-            if (material == null || material.item == null)
-                continue;
-
-            int removeCount = Mathf.Min(Mathf.Max(1, material.count), GetInventoryItemCount(material.item));
+            int removeCount = Mathf.Min(material.requiredCount, GetInventoryItemCount(material.item));
             int consumedIndex = RemoveInventoryItems(material.item, removeCount);
             if (consumedIndex >= 0 && (firstConsumedIndex < 0 || consumedIndex < firstConsumedIndex))
                 firstConsumedIndex = consumedIndex;
         }
 
         return firstConsumedIndex;
+    }
+
+    private List<AggregatedRecipeMaterial> GetAggregatedRecipeMaterials(ShopItemData item)
+    {
+        List<AggregatedRecipeMaterial> result = new List<AggregatedRecipeMaterial>();
+        if (item == null || item.recipeMaterials == null)
+            return result;
+
+        Dictionary<string, AggregatedRecipeMaterial> materialsById =
+            new Dictionary<string, AggregatedRecipeMaterial>();
+
+        foreach (ShopItemData.RecipeMaterial material in item.recipeMaterials)
+        {
+            if (material == null || material.item == null)
+                continue;
+
+            string itemId = GetItemId(material.item);
+            if (string.IsNullOrWhiteSpace(itemId))
+                continue;
+
+            if (!materialsById.TryGetValue(itemId, out AggregatedRecipeMaterial aggregated))
+            {
+                aggregated = new AggregatedRecipeMaterial
+                {
+                    item = material.item,
+                    requiredCount = 0
+                };
+                materialsById.Add(itemId, aggregated);
+                result.Add(aggregated);
+            }
+
+            aggregated.requiredCount += Mathf.Max(1, material.count);
+        }
+
+        return result;
     }
 
     private int RemoveInventoryItems(ShopItemData item, int count)

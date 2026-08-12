@@ -35,7 +35,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 1.6446, y: 3.4617, z: 0}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
+  m_LocalScale: {x: 0.6, y: 0.6, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -126,9 +126,11 @@ MonoBehaviour:
   logDamage: 1
   hitVfxPrefab: {fileID: 500345726442012828, guid: 50a810bfd70577b41a2d43ae0241ea2d, type: 3}
   hitVfxOffset: {x: 0, y: 0, z: 0}
+  hitInvincibilityDuration: 0.15
+  hitFlashCount: 2
   goldPickupPrefab: {fileID: 0}
-  minGoldDrop: 1
-  maxGoldDrop: 3
+  minGoldDrop: 3
+  maxGoldDrop: 9
   experiencePickupPrefab: {fileID: 0}
   minExperienceDrop: 5
   maxExperienceDrop: 10
@@ -177,8 +179,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyKind: 0
   applyPresetOnStart: 0
-  maxHp: 30
-  attackDamage: 10
+  maxHp: 100
+  attackDamage: 15
   moveSpeed: 2
   attackRange: 0.3
   attackCooldown: 1
@@ -197,20 +199,20 @@ MonoBehaviour:
   playerDetectionRange: 6
   drawDetectionRangeAlways: 1
   detectionRangeColor: {r: 1, g: 0.75, b: 0, a: 0.35}
-  useAStarMovement: 1
+  useAStarMovement: 0
   aStarPathfinder: {fileID: 0}
-  fallbackToDirectMovementWhenPathFails: 1
-  aStarRepathInterval: 0.4
-  aStarTargetMoveThreshold: 0.5
+  fallbackToDirectMovementWhenPathFails: 0
+  aStarRepathInterval: 1.5
+  aStarTargetMoveThreshold: 1
   pathWaypointReachDistance: 0.15
   movementMode: 0
   waypointReachDistance: 0.2
   ignoreSameLayerCollision: 1
   warnIfIgnoringDefaultLayer: 1
   useEnemySeparation: 1
-  separationRadius: 0.45
-  separationStrength: 1.5
-  maxSeparationSpeed: 1.25
+  separationRadius: 0.4
+  separationStrength: 1
+  maxSeparationSpeed: 0.75
   separationLayerMask:
     serializedVersion: 2
     m_Bits: 64
@@ -239,6 +241,8 @@ MonoBehaviour:
   logDamage: 1
   hitVfxPrefab: {fileID: 0}
   hitVfxOffset: {x: 0, y: 0, z: 0}
+  hitInvincibilityDuration: 0.15
+  hitFlashCount: 2
   goldPickupPrefab: {fileID: 396247622101000904, guid: 6bc6a7275abde4a429b5f41e4220a1b7, type: 3}
   minGoldDrop: 1
   maxGoldDrop: 3

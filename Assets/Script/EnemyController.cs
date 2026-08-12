@@ -17,7 +17,10 @@ public class EnemyController : MonoBehaviour
 {
     [Header("Type")]
     public EnemyKind enemyKind = EnemyKind.Basic;
-    public bool applyPresetOnStart = true;
+    [Tooltip("켜면 적 종류별 코드 프리셋이 Inspector의 체력과 공격력 등을 덮어씁니다.")]
+    public bool applyPresetOnStart;
+    [Tooltip("프리셋의 크기와 전투 방식은 적용하되 Inspector의 Max Hp와 Attack Damage는 유지합니다.")]
+    public bool preserveInspectorCombatStats = true;
 
     [Header("Stats")]
     public int maxHp = 30;
@@ -57,9 +60,9 @@ public class EnemyController : MonoBehaviour
     [Header("Pathfinding")]
     public bool useAStarMovement;
     public AStarPathfinder2D aStarPathfinder;
-    public bool fallbackToDirectMovementWhenPathFails = true;
-    public float aStarRepathInterval = 0.8f;
-    public float aStarTargetMoveThreshold = 0.5f;
+    public bool fallbackToDirectMovementWhenPathFails;
+    public float aStarRepathInterval = 1.5f;
+    public float aStarTargetMoveThreshold = 1f;
     public float pathWaypointReachDistance = 0.15f;
     public EnemyMovementMode movementMode = EnemyMovementMode.Default;
     public float waypointReachDistance = 0.2f;
@@ -72,11 +75,11 @@ public class EnemyController : MonoBehaviour
     [Tooltip("적들이 완전히 같은 위치에 겹쳐 한 마리처럼 보이는 것을 방지합니다.")]
     public bool useEnemySeparation = true;
     [Tooltip("이 거리 안에 있는 다른 적과 서로 벌어집니다. 크게 할수록 적 사이 간격이 넓어집니다.")]
-    [Min(0.01f)] public float separationRadius = 0.45f;
+    [Min(0.01f)] public float separationRadius = 0.4f;
     [Tooltip("서로 벌어지는 힘입니다. 낮게 설정하면 어느 정도 겹친 상태를 유지할 수 있습니다.")]
-    [Min(0f)] public float separationStrength = 1.5f;
+    [Min(0f)] public float separationStrength = 1f;
     [Tooltip("분리 때문에 추가되는 최대 이동 속도입니다.")]
-    [Min(0f)] public float maxSeparationSpeed = 1.25f;
+    [Min(0f)] public float maxSeparationSpeed = 0.75f;
     [Tooltip("분리 대상으로 검사할 레이어입니다. 적 전용 레이어만 선택하는 것을 권장합니다.")]
     public LayerMask separationLayerMask = ~0;
 
@@ -137,7 +140,7 @@ public class EnemyController : MonoBehaviour
     {
         if (applyPresetOnStart)
         {
-            ApplyPreset(enemyKind);
+            ApplyPresetWithOptionalStatPreservation(enemyKind);
         }
 
         health.Setup(maxHp);
@@ -730,7 +733,7 @@ public class EnemyController : MonoBehaviour
 
         if (applyPresetOnStart)
         {
-            ApplyPreset(enemyKind);
+            ApplyPresetWithOptionalStatPreservation(enemyKind);
             applyPresetOnStart = false;
         }
 
@@ -743,6 +746,23 @@ public class EnemyController : MonoBehaviour
             health.Setup(maxHp);
         }
     }
+
+    public void ApplyHealthAndAttackScaling(float multiplier)
+    {
+        multiplier = Mathf.Max(0.1f, multiplier);
+
+        if (applyPresetOnStart)
+        {
+            ApplyPresetWithOptionalStatPreservation(enemyKind);
+            applyPresetOnStart = false;
+        }
+
+        maxHp = Mathf.Max(1, Mathf.RoundToInt(maxHp * multiplier));
+        attackDamage = Mathf.Max(1, Mathf.RoundToInt(attackDamage * multiplier));
+
+        if (health != null)
+            health.Setup(maxHp);
+    }
     public void ApplyPreset(EnemyKind kind)
     {
         enemyKind = kind;
@@ -750,8 +770,6 @@ public class EnemyController : MonoBehaviour
         switch (enemyKind)
         {
             case EnemyKind.Basic:
-                maxHp = 30;
-                attackDamage = 8;
                 moveSpeed = 2.2f;
                 attackRange = 0.5f;
                 attackCooldown = 1f;
@@ -760,8 +778,6 @@ public class EnemyController : MonoBehaviour
                 break;
 
             case EnemyKind.Ranged:
-                maxHp = 22;
-                attackDamage = 7;
                 moveSpeed = 1.8f;
                 attackRange = 5f;
                 attackCooldown = 1.4f;
@@ -771,8 +787,6 @@ public class EnemyController : MonoBehaviour
                 break;
 
             case EnemyKind.Tank:
-                maxHp = 90;
-                attackDamage = 12;
                 moveSpeed = 1.2f;
                 attackRange = 1.5f;
                 attackCooldown = 1.2f;
@@ -781,8 +795,6 @@ public class EnemyController : MonoBehaviour
                 break;
 
             case EnemyKind.Boss:
-                maxHp = 250;
-                attackDamage = 25;
                 moveSpeed = 1.4f;
                 attackRange = 1.8f;
                 attackCooldown = 1f;
@@ -792,6 +804,20 @@ public class EnemyController : MonoBehaviour
         }
 
         transform.localScale = new Vector3(visualScale.x, visualScale.y, 1f);
+    }
+
+    private void ApplyPresetWithOptionalStatPreservation(EnemyKind kind)
+    {
+        int inspectorMaxHp = maxHp;
+        int inspectorAttackDamage = attackDamage;
+
+        ApplyPreset(kind);
+
+        if (!preserveInspectorCombatStats)
+            return;
+
+        maxHp = Mathf.Max(1, inspectorMaxHp);
+        attackDamage = Mathf.Max(0, inspectorAttackDamage);
     }
 
     private void ConfigureEnemyCollision()
