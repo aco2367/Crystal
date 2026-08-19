@@ -10,13 +10,11 @@ GameObject:
   m_Component:
   - component: {fileID: 7215803973422337877}
   - component: {fileID: 2417718527557786756}
-  - component: {fileID: 601069704039612814}
+  - component: {fileID: 8742057136943310241}
   - component: {fileID: 6408913743872290046}
   - component: {fileID: 2893994737735215067}
-  - component: {fileID: 6118078088618743397}
-  - component: {fileID: 2932531116335409969}
-  - component: {fileID: 3693625195702081336}
   - component: {fileID: 19166387191320224}
+  - component: {fileID: 3571219739140620274}
   m_Layer: 6
   m_Name: BossEnemy
   m_TagString: Untagged
@@ -33,7 +31,7 @@ Transform:
   m_GameObject: {fileID: 763046611952829696}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.6446, y: -3.5383, z: 0}
+  m_LocalPosition: {x: 1.735, y: -4.137, z: 0}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -80,10 +78,10 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 521779569
+  m_SortingLayer: 2
   m_SortingOrder: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
+  m_Sprite: {fileID: -3079976459748834930, guid: 2920d64ae12785c41ae96b8ef47a866e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -94,20 +92,28 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &601069704039612814
-MonoBehaviour:
+--- !u!95 &8742057136943310241
+Animator:
+  serializedVersion: 7
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 763046611952829696}
   m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f2bfca3cc69f9e7468623295c8eb7a5f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  defaultDuration: 0.08
-  defaultStrength: 0.06
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 66e8baf70aab2d747a3757a073b28cb7, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!114 &6408913743872290046
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -120,10 +126,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 795813aa46b40f941b9255cbfde2b94a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hp: 30
-  maxHp: 30
+  hp: 500
+  maxHp: 500
+  logDamage: 1
   hitVfxPrefab: {fileID: 500345726442012828, guid: 50a810bfd70577b41a2d43ae0241ea2d, type: 3}
   hitVfxOffset: {x: 0, y: 0, z: 0}
+  hitInvincibilityDuration: 0.15
+  hitFlashCount: 2
+  goldPickupPrefab: {fileID: 0}
+  minGoldDrop: 1
+  maxGoldDrop: 3
+  experiencePickupPrefab: {fileID: 0}
+  minExperienceDrop: 5
+  maxExperienceDrop: 10
+  rewardSpawnRadius: 0.25
+  animator: {fileID: 8742057136943310241}
+  deathTriggerParameter: Die
+  deathAnimationDuration: 1
 --- !u!50 &2893994737735215067
 Rigidbody2D:
   serializedVersion: 5
@@ -151,83 +170,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &6118078088618743397
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 763046611952829696}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3ccce236649ee174297b07c7000bfbcb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  enemyKind: 3
-  applyPresetOnStart: 0
-  maxHp: 30
-  attackDamage: 10
-  moveSpeed: 2
-  attackRange: 0.7
-  attackCooldown: 1
-  stopDistance: 0.45
-  projectilePrefab: {fileID: 0}
-  projectileSpeed: 7
-  rangedPreferredDistance: 4
-  playerAggroRange: 2.5
-  preferPlayerWhenClose: 1
-  requirePlayerDetection: 1
-  playerDetectionRange: 6
-  drawDetectionRangeAlways: 1
-  detectionRangeColor: {r: 1, g: 0.75, b: 0, a: 0.35}
-  useAStarMovement: 0
-  aStarPathfinder: {fileID: 0}
-  fallbackToDirectMovementWhenPathFails: 0
-  aStarRepathInterval: 1.5
-  aStarTargetMoveThreshold: 1
-  pathWaypointReachDistance: 0.15
-  ignoreSameLayerCollision: 1
-  warnIfIgnoringDefaultLayer: 1
-  useEnemySeparation: 1
-  separationRadius: 0.4
-  separationStrength: 1
-  maxSeparationSpeed: 0.75
-  separationLayerMask:
-    serializedVersion: 2
-    m_Bits: 64
-  spriteRenderer: {fileID: 0}
-  animator: {fileID: 0}
-  movingParameter: IsMoving
-  visualScale: {x: 1, y: 1}
---- !u!114 &2932531116335409969
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 763046611952829696}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 795813aa46b40f941b9255cbfde2b94a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  hp: 30
-  maxHp: 30
-  hitVfxPrefab: {fileID: 0}
-  hitVfxOffset: {x: 0, y: 0, z: 0}
---- !u!114 &3693625195702081336
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 763046611952829696}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 13fb9b9a69026084088f0e015cdf570d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  lifetime: 4
 --- !u!61 &19166387191320224
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -258,15 +200,15 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
+    pivot: {x: 0.5542855, y: 0.51285607}
+    oldSize: {x: 2.3375, y: 2.525}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -274,3 +216,56 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &3571219739140620274
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 763046611952829696}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b9c30d15fc44e1fae0f93c0a7d8b264, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animator: {fileID: 8742057136943310241}
+  spriteRenderer: {fileID: 0}
+  seedSpawnPoint: {fileID: 0}
+  goblinSpawnPoints: []
+  seedProjectilePrefab: {fileID: 2621067903737491467, guid: 81199f2af3cd1f848907e488ec6ea843, type: 3}
+  goblinPrefab: {fileID: 0}
+  moveSpeed: 1.4
+  stopDistance: 2.5
+  spritesFaceLeft: 0
+  contactDamageRange: 1.2
+  contactDamage: 10
+  contactDamageInterval: 1
+  useEnemySeparation: 1
+  separationRadius: 0.8
+  separationStrength: 1.5
+  maxSeparationSpeed: 1
+  separationLayerMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  seedCooldown: 5
+  seedSkillDuration: 2
+  seedFireDelay: 1.9
+  seedProjectileSpeed: 7
+  seedDamage: 10
+  seedProjectileCount: 5
+  seedFanAngle: 60
+  summonCooldown: 10
+  summonSkillDuration: 2.9166667
+  goblinCount: 2
+  summonCenterOffset: {x: 0, y: -0.6}
+  minimumSummonRadius: 0.8
+  randomSummonRadius: 1.5
+  useYSorting: 1
+  bossSortingPivotYOffset: -0.8
+  sortingOrderOffset: 0
+  summonHasPriority: 1
+  globalSkillDelay: 1
+  useSkillsImmediately: 0
+  movingParameter: IsMoving
+  seedTriggerParameter: SeedThrow
+  summonTriggerParameter: SummonGoblin

@@ -81,8 +81,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 521779569
+  m_SortingLayer: 2
   m_SortingOrder: 3
   m_Sprite: {fileID: 2089420281826203473, guid: 78641508cd96131469b83d015f4faa5a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -179,6 +179,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyKind: 0
   applyPresetOnStart: 0
+  preserveInspectorCombatStats: 1
   maxHp: 100
   attackDamage: 15
   moveSpeed: 2
@@ -195,8 +196,9 @@ MonoBehaviour:
   rangedPreferredDistance: 4
   playerAggroRange: 2.5
   preferPlayerWhenClose: 1
+  homeBaseWaypointBypassDistance: 3
   requirePlayerDetection: 1
-  playerDetectionRange: 6
+  playerDetectionRange: 13.68
   drawDetectionRangeAlways: 1
   detectionRangeColor: {r: 1, g: 0.75, b: 0, a: 0.35}
   useAStarMovement: 0
@@ -207,6 +209,7 @@ MonoBehaviour:
   pathWaypointReachDistance: 0.15
   movementMode: 0
   waypointReachDistance: 0.2
+  startFromNearestWaypoint: 1
   ignoreSameLayerCollision: 1
   warnIfIgnoringDefaultLayer: 1
   useEnemySeparation: 1

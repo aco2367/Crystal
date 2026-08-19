@@ -50,6 +50,8 @@ public class EnemyController : MonoBehaviour
     [Header("Defense Phase")]
     public float playerAggroRange = 2.5f;
     public bool preferPlayerWhenClose = true;
+    [Tooltip("HomeBase가 이 거리 안에 있으면 남은 웨이포인트를 생략하고 집으로 직행합니다. 실제 공격 거리는 Attack Range를 사용합니다.")]
+    [Min(0f)] public float homeBaseWaypointBypassDistance = 3f;
 
     [Header("Player Detection")]
     public bool requirePlayerDetection = true;
@@ -66,6 +68,8 @@ public class EnemyController : MonoBehaviour
     public float pathWaypointReachDistance = 0.15f;
     public EnemyMovementMode movementMode = EnemyMovementMode.Default;
     public float waypointReachDistance = 0.2f;
+    [Tooltip("체크하면 웨이포인트 이동을 시작할 때 현재 위치에서 가장 가까운 지점부터 이동합니다.")]
+    public bool startFromNearestWaypoint = true;
 
     [Header("Collision")]
     public bool ignoreSameLayerCollision = true;
@@ -290,6 +294,40 @@ public class EnemyController : MonoBehaviour
             if (waypoint != null)
                 assignedWaypoints.Add(waypoint);
         }
+
+        if (startFromNearestWaypoint && assignedWaypoints.Count > 1)
+            currentWaypointIndex = FindNearestWaypointIndex();
+    }
+
+    private int FindNearestWaypointIndex()
+    {
+        return FindNearestWaypointIndex(0);
+    }
+
+    private int FindNearestWaypointIndex(int startIndex)
+    {
+        int clampedStartIndex = Mathf.Clamp(startIndex, 0, Mathf.Max(0, assignedWaypoints.Count - 1));
+        int nearestIndex = clampedStartIndex;
+        float nearestSqrDistance = float.MaxValue;
+        Vector2 currentPosition = rb != null ? rb.position : (Vector2)transform.position;
+
+        for (int i = clampedStartIndex; i < assignedWaypoints.Count; i++)
+        {
+            Transform waypoint = assignedWaypoints[i];
+
+            if (waypoint == null)
+                continue;
+
+            float sqrDistance = ((Vector2)waypoint.position - currentPosition).sqrMagnitude;
+
+            if (sqrDistance < nearestSqrDistance)
+            {
+                nearestSqrDistance = sqrDistance;
+                nearestIndex = i;
+            }
+        }
+
+        return nearestIndex;
     }
 
     private Transform GetMoveTarget()
@@ -363,6 +401,14 @@ public class EnemyController : MonoBehaviour
         return Vector2.Distance(transform.position, target.position);
     }
 
+    private float GetDistanceToHomeBase()
+    {
+        if (targetHomeBase != null)
+            return GetDistanceToTarget(targetHomeBase.transform);
+
+        return GetDistanceToTarget(homeTarget);
+    }
+
     private void HandleMeleeMovement(Vector2 direction, float distance)
     {
         if (distance <= stopDistance)
@@ -401,8 +447,27 @@ public class EnemyController : MonoBehaviour
             || movementMode == EnemyMovementMode.WaypointThenDirect
             || movementMode == EnemyMovementMode.WaypointThenAStar;
 
+        // 플레이어가 어그로 범위 안에 있으면 웨이포인트를 잠시 중단하고 플레이어를 추적합니다.
+        // 플레이어가 범위를 벗어나면 현재 인덱스 이후의 가장 가까운 웨이포인트부터 재개합니다.
+        if (usesWaypoints && ShouldTargetPlayer())
+            return false;
+
+        bool canContinueToHome = movementMode == EnemyMovementMode.WaypointThenDirect
+            || movementMode == EnemyMovementMode.WaypointThenAStar;
+
+        // 적이 밀리거나 유인되어 이미 집 앞에 도착했다면 남은 경로를 되짚지 않고 바로 공격합니다.
+        if (usesWaypoints && canContinueToHome && homeTarget != null &&
+            homeBaseWaypointBypassDistance > 0f &&
+            GetDistanceToHomeBase() <= homeBaseWaypointBypassDistance)
+        {
+            currentWaypointIndex = assignedWaypoints.Count;
+            return false;
+        }
+
         if (!usesWaypoints || assignedWaypoints.Count == 0 || currentWaypointIndex >= assignedWaypoints.Count)
             return false;
+
+        currentWaypointIndex = FindNearestWaypointIndex(currentWaypointIndex);
 
         Transform waypoint = assignedWaypoints[currentWaypointIndex];
 
