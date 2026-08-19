@@ -44,5 +44,8 @@ TagManager:
   - name: Background
     uniqueID: 610107635
     locked: 0
+  - name: Ememy
+    uniqueID: 521779569
+    locked: 0
   m_RenderingLayers:
   - Default
