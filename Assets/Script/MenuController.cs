@@ -53,6 +53,7 @@ public class MenuController : MonoBehaviour
 
     public void OpenOptions()
     {
+        GameAudioManager.Play(GameSfx.SettingsOpen);
         FindSettingsMenuIfNeeded();
 
         if (settingsMenu != null && settingsMenu.settingsPanel != null)

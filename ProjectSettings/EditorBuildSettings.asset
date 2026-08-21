@@ -18,17 +18,26 @@ EditorBuildSettings:
     path: Assets/Scenes/MainMap2.unity
     guid: a2f76334ff8c342459eaf098c2125462
   - enabled: 1
+    path: Assets/Scenes/MainMap3.unity
+    guid: b9cb32339e200134a8b7f910902f4332
+  - enabled: 1
     path: Assets/Scenes/DefenseMap1.unity
     guid: e943d3c7afedb5342bf0ead3ce89cf78
   - enabled: 1
     path: Assets/Scenes/DefenseMap2.unity
     guid: a7355d4b27c86904497694d23e28766c
   - enabled: 1
+    path: Assets/Scenes/DefenseMap3.unity
+    guid: c6f72e3f738c65540bfdadf6c478ac46
+  - enabled: 1
     path: Assets/Scenes/BossMap.unity
     guid: 65be16d0c3fc53c44a148fcbc585fa16
   - enabled: 1
     path: Assets/Scenes/BossMap-2.unity
     guid: 59ef793b272fe3743a0628f42af773c0
+  - enabled: 1
+    path: Assets/Scenes/BossMap-3.unity
+    guid: e58274a2a8765a543a154b863cf11275
   - enabled: 1
     path: Assets/Scenes/EmberKeep.unity
     guid: a79be882fb16aeb4baae4c5e636e93ae

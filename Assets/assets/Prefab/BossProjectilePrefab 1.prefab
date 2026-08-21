@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 7758020413700227104}
   - component: {fileID: 4961104986932995526}
   - component: {fileID: 7830986757418535042}
+  - component: {fileID: 7013498762110453921}
   - component: {fileID: 2556772848797911968}
   m_Layer: 0
   m_Name: BossProjectilePrefab 1
@@ -76,9 +77,9 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 3
+  m_SortingLayerID: 521779569
+  m_SortingLayer: 2
+  m_SortingOrder: 30
   m_Sprite: {fileID: -6290649942822761454, guid: ac26be54920be8d438261de4dc0902a4, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -151,8 +152,30 @@ CircleCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
-  m_Radius: 0.5
+  m_Offset: {x: 0.007362306, y: -0.08098525}
+  m_Radius: 0.2791311
+--- !u!95 &7013498762110453921
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2621067903737491467}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: a93336d2c3954124db6ee0cae915a18c, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!114 &2556772848797911968
 MonoBehaviour:
   m_ObjectHideFlags: 0

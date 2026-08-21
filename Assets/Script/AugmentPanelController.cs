@@ -177,6 +177,7 @@ public class AugmentPanelController : MonoBehaviour
 
         AugmentData augment = currentChoices[index];
         augment.Apply(playerStats);
+        GameAudioManager.Play(GameSfx.AugmentSelect);
         Debug.Log($"증강 선택됨: {augment.augmentName}, 남은 증강 포인트: {playerStats.augmentPoints}", this);
         ClearChoiceCache();
 

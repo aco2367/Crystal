@@ -28,6 +28,8 @@ public class WaveStatusUI : MonoBehaviour
     [Header("Persistence")]
     public bool keepUiAcrossScenes = true;
     public int persistentCanvasSortingOrder = 0;
+    [Tooltip("이 이름으로 시작하는 씬에서는 골드, 시간, 적 수 UI를 숨깁니다.")]
+    public string bossSceneNamePrefix = "BossMap";
 
     private WaveManager waveManager;
     private PlayerStats playerStats;
@@ -65,6 +67,7 @@ public class WaveStatusUI : MonoBehaviour
         SceneManager.sceneLoaded += OnSceneLoaded;
         FindReferences();
         EnsureStatusUiPersistence();
+        SetStatusUiVisible(!IsBossScene(SceneManager.GetActiveScene()));
     }
 
     private void OnDestroy()
@@ -91,6 +94,7 @@ public class WaveStatusUI : MonoBehaviour
         FindReferences();
         EnsureStatusUiPersistence();
         DisableDuplicateSceneStatusUi();
+        SetStatusUiVisible(!IsBossScene(scene));
         Refresh();
     }
 
@@ -274,5 +278,29 @@ public class WaveStatusUI : MonoBehaviour
 
         if (aliveEnemyCountText != null)
             aliveEnemyCountText.text = $"{enemyCountPrefix}{waveManager.AliveEnemyCount}";
+    }
+
+    private bool IsBossScene(Scene scene)
+    {
+        return scene.IsValid() && !string.IsNullOrWhiteSpace(bossSceneNamePrefix) &&
+            scene.name.StartsWith(bossSceneNamePrefix, System.StringComparison.OrdinalIgnoreCase);
+    }
+
+    private void SetStatusUiVisible(bool visible)
+    {
+        SetTextPanelVisible(nextSceneTimeText, visible);
+        SetTextPanelVisible(aliveEnemyCountText, visible);
+        SetTextPanelVisible(goldText, visible);
+    }
+
+    private static void SetTextPanelVisible(TMP_Text text, bool visible)
+    {
+        if (text == null)
+            return;
+
+        GameObject panelObject = text.transform.parent != null
+            ? text.transform.parent.gameObject
+            : text.gameObject;
+        panelObject.SetActive(visible);
     }
 }

@@ -285,6 +285,17 @@ public class BossController : MonoBehaviour
             return;
 
         GameObject projectileObject = Instantiate(seedProjectilePrefab, spawnPosition, Quaternion.identity);
+
+        // BossProjectilePrefab 1은 Boss2의 큰 눈덩이와 공유한다.
+        // Boss1이 씨앗으로 사용할 때만 Snow 애니메이션을 꺼서
+        // Animator의 위치/스프라이트 변화가 씨앗 비행을 덮어쓰지 않게 한다.
+        Animator[] projectileAnimators = projectileObject.GetComponentsInChildren<Animator>(true);
+        foreach (Animator projectileAnimator in projectileAnimators)
+        {
+            if (projectileAnimator != null)
+                projectileAnimator.enabled = false;
+        }
+
         EnemyProjectile projectile = projectileObject.GetComponent<EnemyProjectile>();
 
         if (projectile == null)
@@ -324,6 +335,14 @@ public class BossController : MonoBehaviour
             }
 
             GameObject goblin = Instantiate(goblinPrefab, spawnPosition, Quaternion.identity);
+
+            EnemyHealth[] summonedHealthComponents = goblin.GetComponentsInChildren<EnemyHealth>(true);
+            foreach (EnemyHealth summonedHealth in summonedHealthComponents)
+            {
+                if (summonedHealth != null)
+                    summonedHealth.DisableDeathRewards();
+            }
+
             if (useYSorting)
                 ConfigureYSorting(goblin, sortingOrderOffset, 0f);
         }
@@ -473,6 +492,7 @@ public class BossController : MonoBehaviour
 
     private void HandleDeath(EnemyHealth _)
     {
+        BossExitPortal.EnsurePortalForDefeatedBoss(health);
         isDead = true;
         isUsingSkill = false;
 

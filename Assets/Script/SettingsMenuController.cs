@@ -77,6 +77,8 @@ public class SettingsMenuController : MonoBehaviour
     private float previousTimeScale = 1f;
     private bool pauseApplied;
     private bool initialized;
+    private const string SoundVolumeKey = "Settings.SoundVolume";
+    private const string BrightnessKey = "Settings.Brightness";
 
     private void Awake()
     {
@@ -110,6 +112,9 @@ public class SettingsMenuController : MonoBehaviour
 
         initialized = true;
         Instance = this;
+
+        soundVolume = PlayerPrefs.GetFloat(SoundVolumeKey, soundVolume);
+        brightness = PlayerPrefs.GetFloat(BrightnessKey, brightness);
 
         MakePersistentIfNeeded();
         SettingsMenuInputHandler.RegisterSettingsMenu(this);
@@ -388,15 +393,9 @@ public class SettingsMenuController : MonoBehaviour
     public void SetSoundVolume(float value)
     {
         soundVolume = Mathf.Clamp01(value);
-
-        if (controlledAudioSources != null)
-        {
-            foreach (AudioSource audioSource in controlledAudioSources)
-            {
-                if (audioSource != null)
-                    audioSource.volume = soundVolume;
-            }
-        }
+        GameAudioManager.SetMasterVolume(soundVolume);
+        PlayerPrefs.SetFloat(SoundVolumeKey, soundVolume);
+        PlayerPrefs.Save();
 
         UpdatePercentText(soundValueText, soundVolume);
     }
@@ -404,13 +403,42 @@ public class SettingsMenuController : MonoBehaviour
     public void SetBrightness(float value)
     {
         brightness = Mathf.Clamp01(value);
+        EnsureBrightnessOverlay();
         UpdatePercentText(brightnessValueText, brightness);
+        PlayerPrefs.SetFloat(BrightnessKey, brightness);
+        PlayerPrefs.Save();
 
         if (brightnessOverlay != null)
         {
             float darkness = 1f - brightness;
-            brightnessOverlay.color = new Color(0f, 0f, 0f, darkness * 0.55f);
+            brightnessOverlay.color = new Color(0f, 0f, 0f, darkness * 0.8f);
         }
+    }
+
+    private void EnsureBrightnessOverlay()
+    {
+        if (brightnessOverlay != null)
+            return;
+
+        Canvas targetCanvas = persistentCanvasObject != null
+            ? persistentCanvasObject.GetComponent<Canvas>()
+            : settingsPanel != null ? settingsPanel.GetComponentInParent<Canvas>() : null;
+
+        if (targetCanvas == null)
+            return;
+
+        GameObject overlayObject = new GameObject("RuntimeBrightnessOverlay", typeof(RectTransform), typeof(CanvasRenderer), typeof(Image));
+        RectTransform overlayRect = overlayObject.GetComponent<RectTransform>();
+        overlayRect.SetParent(targetCanvas.transform, false);
+        overlayRect.anchorMin = Vector2.zero;
+        overlayRect.anchorMax = Vector2.one;
+        overlayRect.offsetMin = Vector2.zero;
+        overlayRect.offsetMax = Vector2.zero;
+        overlayRect.SetAsFirstSibling();
+
+        brightnessOverlay = overlayObject.GetComponent<Image>();
+        brightnessOverlay.raycastTarget = false;
+        brightnessOverlay.color = Color.clear;
     }
 
     public void GoToLobby()

@@ -93,11 +93,14 @@ MonoBehaviour:
   attackSceneNames:
   - EmberKeep
   - Attack1
+  - Attack2
   maintenanceSceneNames:
   - MainMap1
   - MainMap2
+  - MainMap3
   defenseSceneNames:
   - DefenseMap1
   - DefenseMap2
+  - DefenseMap3
   enableHoldSkipToNextPhase: 1
   skipHoldDuration: 1

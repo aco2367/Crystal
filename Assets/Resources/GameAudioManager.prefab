@@ -1,0 +1,73 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &100000
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 400000}
+  - component: {fileID: 11400000}
+  m_Layer: 0
+  m_Name: GameAudioManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &400000
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 100000}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9c3a17fd3f24f049f043b2025a7d7b1, type: 3}
+  m_Name:
+  m_EditorClassIdentifier:
+  basicBgm1: {fileID: 8300000, guid: 77dc9c5b36640bf45a3b9a08f1725bc7, type: 3}
+  basicBgm2: {fileID: 8300000, guid: 0d17fa6fadfb37846b8b9d2f72e0adbd, type: 3}
+  basicBgm3: {fileID: 8300000, guid: c1d18de5c063e1d48ad606f252368ea9, type: 3}
+  bossBgm: {fileID: 8300000, guid: fa5ae4b5e1113184cbf12eff66493fad, type: 3}
+  swordAttack: {fileID: 8300000, guid: 9846e70cefb36c647934116248a416c3, type: 3}
+  swordSkill: {fileID: 8300000, guid: 1227568175b93b14295f770292b85ec8, type: 3}
+  archerAttack: {fileID: 8300000, guid: a2faf707572eeb74487ebb0e5061f621, type: 3}
+  archerSkill: {fileID: 8300000, guid: c5c356bdae84c11459f5122e25d61c6b, type: 3}
+  tankAttackLift: {fileID: 8300000, guid: d0ed176056700594687b769a84331fb6, type: 3}
+  tankAttackImpact: {fileID: 8300000, guid: 1da76e75a39132047814a89477256778, type: 3}
+  tankSkillStart: {fileID: 8300000, guid: a52a40ff33c187645a4310a197420e05, type: 3}
+  tankSkillEnd: {fileID: 8300000, guid: c8709bae4acfe9f45986b64bdc80f9bd, type: 3}
+  playerHit: {fileID: 8300000, guid: 3ef3ce9f293752042a8e1696a1d0bd8a, type: 3}
+  monsterDeath: {fileID: 8300000, guid: 9564b2d7614e57040aad66d4137b270c, type: 3}
+  goldPickup: {fileID: 8300000, guid: 42234e9b6a022eb439d6825abf7431ec, type: 3}
+  experiencePickup: {fileID: 8300000, guid: 0b169ce9b473499448764e106ebd50b6, type: 3}
+  levelUp: {fileID: 8300000, guid: 1c411e8e3abd1b44588a1135d39adad2, type: 3}
+  buttonClick: {fileID: 8300000, guid: 42456eed932a52e45b1f386e434a485e, type: 3}
+  characterSelect: {fileID: 8300000, guid: 85262490cb62e434ab0ef545549ffc93, type: 3}
+  augmentSelect: {fileID: 8300000, guid: 9748c8e1322db9444819ee0f0a2fbd8b, type: 3}
+  settingsOpen: {fileID: 8300000, guid: ff8aed6f4239eab4aa6f0fab4fef9a28, type: 3}
+  purchase: {fileID: 8300000, guid: 9f263a8838ef2cc46ad093fad4917f0d, type: 3}
+  timeOver: {fileID: 8300000, guid: 0f724c1d1ea4cd94aa86ce35e5bb2617, type: 3}
+  forgeEnter: {fileID: 8300000, guid: 614b6961b4ece4c4fae7c78459ca2a1f, type: 3}
+  forgeExit: {fileID: 8300000, guid: 32bc8ea3713708c4ba53de646e28f054, type: 3}
+  bgmVolume: 0.55
+  sfxVolume: 0.8

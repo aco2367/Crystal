@@ -163,6 +163,7 @@ public class CoinPickup : MonoBehaviour
         if (targetStats != null)
         {
             targetStats.AddGold(value);
+            GameAudioManager.Play(GameSfx.GoldPickup);
         }
 
         Destroy(gameObject);

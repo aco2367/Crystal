@@ -400,6 +400,9 @@ public class PlayerController : MonoBehaviour
         if (hasAppliedRoleAppearance && currentRole == newRole)
             return;
 
+        if (hasAppliedRoleAppearance)
+            GameAudioManager.Play(GameSfx.CharacterSelect);
+
         float hpPercent = 1f;
         int maxHpBonus = 0;
         int attackPowerBonus = 0;
@@ -964,7 +967,7 @@ public class PlayerController : MonoBehaviour
 
     private void NormalAttack()
     {
-        if (stats == null || stats.isDead || isUsingSkill)
+        if (stats == null || stats.isDead || isUsingSkill || IsGameplayPanelOpen())
             return;
 
         float attackDelay = 1f / stats.attackSpeed;
@@ -981,14 +984,18 @@ public class PlayerController : MonoBehaviour
         switch (currentRole)
         {
             case PlayerRole.Sword:
+                GameAudioManager.Play(GameSfx.SwordAttack);
                 SwordAttack(damage);
                 if (augmentController != null && augmentController.HasSwordWave())
                     FireProjectile(attackDirection, Mathf.RoundToInt(stats.attackPower * augmentController.swordWaveDamageMultiplier), augmentController.swordWaveRange, augmentController.swordWaveSpeed, true, augmentController.swordWaveProjectilePrefab);
                 break;
             case PlayerRole.Archer:
+                GameAudioManager.Play(GameSfx.ArcherAttack);
                 ArcherAttack(damage);
                 break;
             case PlayerRole.Tank:
+                GameAudioManager.Play(GameSfx.TankAttackLift);
+                GameAudioManager.PlayDelayed(GameSfx.TankAttackImpact, 0.18f);
                 TankAttack(damage);
                 break;
         }
@@ -1004,6 +1011,17 @@ public class PlayerController : MonoBehaviour
         {
             weaponAimController.PlayAttackSlash();
         }
+    }
+
+    private static bool IsGameplayPanelOpen()
+    {
+        if (TrainingPanelController.AnyOpen)
+            return true;
+
+        if (ShopPanelController.Instance != null && ShopPanelController.Instance.IsOpen())
+            return true;
+
+        return AugmentPanelController.Instance != null && AugmentPanelController.Instance.IsOpen();
     }
 
     private void StartAttackFacingLock()
@@ -1200,6 +1218,7 @@ public class PlayerController : MonoBehaviour
     private IEnumerator SwordSkillRoutine()
     {
         isUsingSkill = true;
+        GameAudioManager.Play(GameSfx.SwordSkill);
         moveInput = Vector2.zero;
         rb.linearVelocity = Vector2.zero;
 
@@ -1222,6 +1241,7 @@ public class PlayerController : MonoBehaviour
     private IEnumerator TankSkillRoutine()
     {
         isUsingSkill = true;
+        GameAudioManager.Play(GameSfx.TankSkillStart);
 
         if (playerAnimator != null)
             SetAnimatorTrigger("Skill");
@@ -1237,6 +1257,7 @@ public class PlayerController : MonoBehaviour
 
         yield return new WaitForSeconds(tankSkillDuration);
 
+        GameAudioManager.Play(GameSfx.TankSkillEnd);
         stats.ClearDefenseBuffs();
         tankSkillCoroutine = null;
     }
@@ -1244,6 +1265,7 @@ public class PlayerController : MonoBehaviour
     private IEnumerator ArcherSkillRoutine()
     {
         isUsingSkill = true;
+        GameAudioManager.Play(GameSfx.ArcherSkill);
 
         if (playerAnimator != null)
             SetAnimatorTrigger("Skill");

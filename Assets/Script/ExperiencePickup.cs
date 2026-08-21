@@ -114,7 +114,10 @@ public class ExperiencePickup : MonoBehaviour
     private void Collect()
     {
         if (targetStats != null)
+        {
             targetStats.AddExp(value);
+            GameAudioManager.Play(GameSfx.ExperiencePickup);
+        }
 
         Destroy(gameObject);
     }

@@ -164,6 +164,7 @@ public class ShopPanelController : MonoBehaviour
 
     public void Open(PlayerStats stats)
     {
+        GameAudioManager.Play(GameSfx.ForgeEnter);
         playerStats = stats != null ? stats : FindFirstObjectByType<PlayerStats>();
         EnsurePanel();
         RestoreInventoryFromSession();
@@ -185,6 +186,8 @@ public class ShopPanelController : MonoBehaviour
 
     public void Close()
     {
+        if (IsOpen())
+            GameAudioManager.Play(GameSfx.ForgeExit);
         if (panelRoot != null)
             panelRoot.SetActive(false);
     }
@@ -700,6 +703,7 @@ public class ShopPanelController : MonoBehaviour
         int inventoryInsertIndex = ConsumeOwnedMaterials(item);
         playerStats.ApplyShopItem(item);
         AddInventoryItem(item, inventoryInsertIndex);
+        GameAudioManager.Play(GameSfx.Purchase);
         if (!item.canBuyMultiple)
             purchasedUniqueItemIds.Add(GetItemId(item));
 

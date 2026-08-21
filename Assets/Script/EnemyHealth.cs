@@ -44,6 +44,7 @@ public class EnemyHealth : MonoBehaviour
     private Material hitFlashMaterial;
     private MaterialPropertyBlock flashPropertyBlock;
     private static readonly int FlashAmountId = Shader.PropertyToID("_FlashAmount");
+    private float damageTakenMultiplier = 1f;
 
     private void Awake()
     {
@@ -137,15 +138,26 @@ public class EnemyHealth : MonoBehaviour
         }
     }
 
+    public void DisableDeathRewards()
+    {
+        minGoldDrop = 0;
+        maxGoldDrop = 0;
+        minExperienceDrop = 0;
+        maxExperienceDrop = 0;
+        goldPickupPrefab = null;
+        experiencePickupPrefab = null;
+    }
+
     public void TakeDamage(int damage)
     {
         if (isDead || hitFeedbackCoroutine != null)
             return;
 
-        hp = Mathf.Max(0, hp - Mathf.Max(0, damage));
+        int finalDamage = Mathf.Max(0, Mathf.RoundToInt(damage * damageTakenMultiplier));
+        hp = Mathf.Max(0, hp - finalDamage);
 
         if (logDamage)
-            Debug.Log($"{gameObject.name} 피해량: {damage}, 남은 HP: {hp}/{maxHp}");
+            Debug.Log($"{gameObject.name} 피해량: {finalDamage}, 남은 HP: {hp}/{maxHp}");
 
         if (hp <= 0)
         {
@@ -155,6 +167,11 @@ public class EnemyHealth : MonoBehaviour
 
         PlayHitFeedback();
         hitFeedbackCoroutine = StartCoroutine(HitFlashAndInvincibilityRoutine());
+    }
+
+    public void SetDamageTakenMultiplier(float multiplier)
+    {
+        damageTakenMultiplier = Mathf.Max(0f, multiplier);
     }
 
     private System.Collections.IEnumerator HitFlashAndInvincibilityRoutine()
@@ -213,6 +230,7 @@ public class EnemyHealth : MonoBehaviour
             return;
 
         isDead = true;
+        GameAudioManager.Play(GameSfx.MonsterDeath);
 
         if (hitFeedbackCoroutine != null)
         {

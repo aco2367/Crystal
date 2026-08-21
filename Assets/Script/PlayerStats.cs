@@ -131,6 +131,7 @@ public class PlayerStats : MonoBehaviour
         }
 
         hp = Mathf.Max(0, hp - incomingDamage);
+        GameAudioManager.Play(GameSfx.PlayerHit);
         PlayHitFlash();
 
         if (augmentController != null && meleeAttacker != null && !isProjectile)
@@ -321,6 +322,7 @@ public class PlayerStats : MonoBehaviour
 
     private void LevelUp()
     {
+        GameAudioManager.Play(GameSfx.LevelUp);
         level++;
         trainingPoints++;
         augmentPoints++;
